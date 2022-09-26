@@ -70,7 +70,7 @@ container.addEventListener('click', (e) => {
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = +e.target.value; // gets price (value) of the selected movie in number format
   setMovieData(e.target.selectedIndex, e.target.value); //runs the function to store selected movie name (e.target.selectedIndex) and price (e.target.value) to local storage
-  let movieImg = e.target.options[e.target.selectedIndex].text;
+  let movieImg = e.target.options[e.target.selectedIndex].text; // select the movie name and changes the image accordingly
   if (movieImg.includes('Avatar')) {
     movieImage.src = 'img/avatar.jpeg';
   } else if (movieImg.includes('Joker')) {
@@ -83,15 +83,5 @@ movieSelect.addEventListener('change', (e) => {
   updateSelectedCount();
 });
 
-// function changeImage(){
-//     movieSelect.addEventListener('change', (e) => {
-        
-        
-//     })};
-
-
-
-// changeImage();
-//initial count and total set
 
 updateSelectedCount();
