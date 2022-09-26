@@ -5,7 +5,6 @@ const total = document.querySelector('#total');
 const movieSelect = document.querySelector('#movie');
 const movieImage = document.querySelector('.movie-img');
 
-
 populateUI();
 let ticketPrice = +movieSelect.value; //+ at the start is to convert value to a number
 
@@ -22,17 +21,26 @@ function populateUI() {
   }
   const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
   if (selectedMovieIndex !== null) {
-    movieSelect.selectedIndex = selectedMovieIndex; //setting stored selected movie index back to movieSelect
+    movieSelect.selectedIndex = selectedMovieIndex;
+    let movieName = movieSelect[movieSelect.selectedIndex].text;
+     //setting stored selected movie index back to movieSelect
+     if (movieName.includes('Avatar')) {
+        movieImage.src = 'img/avatar.jpeg';
+      } else if (movieName.includes('Joker')) {
+        movieImage.src = 'img/joker.jpeg';
+      } else if (movieName.includes('Star Wars')) {
+        movieImage.src = 'img/starwars.jpeg';
+      } else if (movieName.includes('Avengers')) {
+        movieImage.src = 'img/avengers.jpeg';
+      }
   }
-
-  const selectedMovieImage = localStorage.getItem('selectedMovieImage');
+  
 }
 
 // save selected movie index and price to local storage
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
-  
 }
 
 //update total and count
@@ -62,19 +70,28 @@ container.addEventListener('click', (e) => {
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = +e.target.value; // gets price (value) of the selected movie in number format
   setMovieData(e.target.selectedIndex, e.target.value); //runs the function to store selected movie name (e.target.selectedIndex) and price (e.target.value) to local storage
-  let movieName = e.target.options[e.target.selectedIndex].text;
-  if (movieName.includes('Avatar')) {
+  let movieImg = e.target.options[e.target.selectedIndex].text;
+  if (movieImg.includes('Avatar')) {
     movieImage.src = 'img/avatar.jpeg';
-  } else if (movieName.includes('Joker')) {
+  } else if (movieImg.includes('Joker')) {
     movieImage.src = 'img/joker.jpeg';
-  } else if (movieName.includes('Star Wars')) {
+  } else if (movieImg.includes('Star Wars')) {
     movieImage.src = 'img/starwars.jpeg';
-  } else if (movieName.includes('Avengers')) {
+  } else if (movieImg.includes('Avengers')) {
     movieImage.src = 'img/avengers.jpeg';
   }
   updateSelectedCount();
 });
 
+// function changeImage(){
+//     movieSelect.addEventListener('change', (e) => {
+        
+        
+//     })};
+
+
+
+// changeImage();
 //initial count and total set
 
 updateSelectedCount();
